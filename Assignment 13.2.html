@@ -27,10 +27,13 @@
 			if(!username || username == ''){
 				username = 'sneha-thammineni';
 			}
-
+                     //Ajax Request starts here. Assigning an ajax object to a variable
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function(){
+				// State - 4 is used when the state is done(ie; The operation is complete)
+				// XHR status 200 is used when the status is OK
 				if(xhttp.readyState == 4 && xhttp.status == 200){
+					//Parsing the JSON response obtained from the server
 					var user = JSON.parse(xhttp.responseText);
 					document.getElementById('profile').innerHTML = `<div class="panel 		panel-default">
   								<div class="panel-heading">
@@ -56,7 +59,9 @@
 							</div>`;
 				}
 			}
+			//Getting the object from the url 
 			xhttp.open('GET', 'https://api.github.com/users/'+username, true);
+			//Sends the request to the server when GET is used.
 			xhttp.send();
 		}
 
